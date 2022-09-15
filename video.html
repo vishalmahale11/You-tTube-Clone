@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Fullscreen</title>
+</head>
+<style>
+    #fullcontent {
+        border: 1px solid black;
+        height: 500px;
+        width: 100%;
+    }
+
+    iframe {
+        height: 480px;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <h1>Video fullscreen</h1>
+    <div id="fullcontent"></div>
+</body>
+
+</html>
+<script>
+    let x = JSON.parse(localStorage.getItem("fullVideo"));
+
+
+    let fullcontent = document.getElementById("fullcontent");
+    let displaydata = (data) => {
+        console.log(data);
+
+        let div = document.createElement("div");
+
+        let iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${data.videoId}`
+        iframe.allow = "fullscreen";
+
+        let h3 = document.createElement("h3");
+        h3.innerText = data.title;
+
+        div.append(iframe, h3)
+
+        fullcontent.append(div);
+
+    }
+    displaydata(x);
+
+</script>
